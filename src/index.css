@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 248 250 253; /* #F8FAFD */
+  --card: 255 255 255;
+  --ink: 38 52 74; /* #26344A */
+  --muted: 105 121 145;
+  --line: 223 231 242;
+  --soft: 241 245 250;
+  --pb: 169 201 245; /* #A9C9F5 */
+  --pb-soft: 240 246 255; /* #F0F6FF */
+  --pb-ink: 46 94 165;
+  --pr: 244 166 166; /* #F4A6A6 */
+  --pr-soft: 255 241 241; /* #FFF1F1 */
+  --pr-ink: 176 66 70;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: 14 20 31;
+  --card: 21 29 43;
+  --ink: 226 233 244;
+  --muted: 143 158 182;
+  --line: 40 52 73;
+  --soft: 29 39 56;
+  --pb: 122 162 222;
+  --pb-soft: 27 41 64;
+  --pb-ink: 160 197 247;
+  --pr: 224 135 135;
+  --pr-soft: 58 33 38;
+  --pr-ink: 246 164 164;
+  color-scheme: dark;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+  body {
+    @apply bg-bg text-ink font-sans antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+  h1,
+  h2,
+  h3 {
+    @apply tracking-tight;
+  }
+  ::selection {
+    background: rgb(var(--pb) / 0.45);
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--line)) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: rgb(var(--line));
+    border-radius: 999px;
+    border: 2px solid rgb(var(--card));
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  input[type='checkbox'] {
+    @apply h-4 w-4 rounded border-line text-pb accent-pb cursor-pointer;
+  }
+  option {
+    @apply bg-card text-ink;
+  }
+}
+
+@layer components {
+  .range-pb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    cursor: pointer;
+    background: linear-gradient(to right, rgb(var(--pb)) var(--fill, 50%), rgb(var(--line)) var(--fill, 50%));
+  }
+  .range-pb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: #fff;
+    border: 2px solid rgb(var(--pb-ink));
+    box-shadow: 0 1px 3px rgb(38 52 74 / 0.2);
+  }
+  .range-pb::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+    background: #fff;
+    border: 2px solid rgb(var(--pb-ink));
+  }
+  .range-pb:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgb(var(--pb) / 0.35);
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
